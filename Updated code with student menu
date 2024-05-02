@@ -253,7 +253,7 @@ public:
 };
 
 int main() {
-   
+
     Library library;
     int userType, choice;
 
@@ -315,7 +315,10 @@ int main() {
         do {
             cout << "\nStudent Menu:\n"
                 << "1. Search for a book by title\n"
-                << "2. Exit\n"
+                << "2. Borrow a book\n"
+                << "3. Return a book\n"
+                << "4. Calculate fines\n"
+                << "5. Exit\n"
                 << "Enter your choice: ";
             cin >> choice;
             cin.ignore();
@@ -328,13 +331,37 @@ int main() {
                 library.searchBookByTitle(title);
                 break;
             }
-            case 2:
+            case 2: {
+                int bookID;
+                cout << "Enter book ID to borrow: ";
+                cin >> bookID;
+                library.borrowBook(bookID);
+                break;
+            }
+            case 3: {
+                int bookID;
+                cout << "Enter book ID to return: ";
+                cin >> bookID;
+                library.returnBook(bookID);
+                break;
+            }
+            case 4: {
+                int bookID;
+                string returnDate;
+                cout << "Enter book ID: ";
+                cin >> bookID;
+                cout << "Enter return date (YYYY-MM-DD): ";
+                cin >> returnDate;
+                library.calculateFines(bookID, returnDate);
+                break;
+            }
+            case 5:
                 cout << "Exiting program." << endl;
                 break;
             default:
-                cout << "Invalid choice. Please enter 1 or 2." << endl;
+                cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
             }
-        } while (choice != 2);
+        } while (choice != 5);
     }
     else {
         cout << "Invalid user type selected. Exiting program." << endl;
@@ -342,3 +369,4 @@ int main() {
 
     return 0;
 }
+
